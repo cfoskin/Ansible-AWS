@@ -1,0 +1,36 @@
+---
+ - hosts: localhost
+   connection: local
+   gather_facts: true
+   user: root
+   pre_tasks:
+    - include_vars: ~/ansible/roles/provision-ec2-instance/tasks/webserver-vars/{{type}}.yml
+   roles:
+   - provision-ec2-instance 
+
+ - hosts: localhost
+   connection: local
+   gather_facts: true
+   user: root
+   pre_tasks:
+    - include_vars: ~/ansible/roles/provision-ec2-instance/tasks/webserver-vars/{{type}}.yml
+   roles:
+   - provision-ec2-instance 
+
+ - hosts: localhost
+   connection: local
+   gather_facts: true
+   user: root
+   pre_tasks:
+    - include_vars: ~/ansible/roles/provision-ec2-instance/tasks/load-balancer-vars/loadbalancers.yml
+   roles:
+   - provision-ec2-instance 
+
+ - hosts: all
+   gather_facts: true
+   become: yes
+   pre_tasks:
+    - include_vars: ~/ansible/roles/provision-ec2-instance/tasks/webserver-vars/{{type}}.yml
+   roles:
+   - nginx
+
