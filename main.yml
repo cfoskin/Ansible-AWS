@@ -1,12 +1,12 @@
 ---
- # - hosts: localhost
- #   connection: local
- #   gather_facts: true
- #   user: root
- #   pre_tasks:
- #    - include_vars: ~/ansible-AWS/roles/provision-webservers/tasks/webserver-vars/webservers.yml
- #   roles:
- #   - provision-webservers
+ - hosts: localhost
+   connection: local
+   gather_facts: true
+   user: root
+   pre_tasks:
+    - include_vars: ~/ansible-AWS/roles/provision-webservers/tasks/webserver-vars/webservers.yml
+   roles:
+   - provision-webservers
 
  - hosts: localhost
    connection: local
@@ -16,14 +16,14 @@
     - include_vars: ~/ansible-AWS/roles/provision-loadbalancer/tasks/loadbalancer-vars/loadbalancer.yml
    roles:
    - provision-loadbalancer
-
- # - hosts: webservers
- #   gather_facts: true
- #   become: yes
- #   pre_tasks:
- #    - include_vars: ~/ansible-AWS/roles/provision-webservers/tasks/webserver-vars/webservers.yml
- #   roles:
- #   - nginx
+ 
+ - hosts: webservers
+   gather_facts: true
+   become: yes
+   pre_tasks:
+    - include_vars: ~/ansible-AWS/roles/provision-webservers/tasks/webserver-vars/webservers.yml
+   roles:
+   - nginx
 
  - hosts: loadbalancer
    gather_facts: true
