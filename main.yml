@@ -8,14 +8,14 @@
    roles:
    - provision-webservers
 
- # - hosts: localhost
- #   connection: local
- #   gather_facts: true
- #   user: root
- #   pre_tasks:
- #    - include_vars: ~/ansible-AWS/roles/provision-ec2-instance/tasks/load-balancer-vars/loadbalancers.yml
- #   roles:
- #   - provision-ec2-instance 
+ - hosts: localhost
+   connection: local
+   gather_facts: true
+   user: root
+   pre_tasks:
+    - include_vars: ~/ansible-AWS/roles/provision-loadbalancer/tasks/loadbalancer-vars/loadbalancer.yml
+   roles:
+   - provision-loadbalancer
 
  - hosts: all
    connection: local
