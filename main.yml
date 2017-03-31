@@ -1,0 +1,50 @@
+---
+ - hosts: localhost
+   connection: local
+   gather_facts: true
+   user: root
+   pre_tasks:
+    - include_vars: ~/ansible-AWS/roles/provision-webservers/tasks/webserver-vars/webservers.yml
+   roles:
+   - provision-webservers
+
+ # - hosts: localhost
+ #   connection: local
+ #   gather_facts: true
+ #   user: root
+ #   pre_tasks:
+ #    - include_vars: ~/ansible-AWS/roles/provision-ec2-instance/tasks/load-balancer-vars/loadbalancers.yml
+ #   roles:
+ #   - provision-ec2-instance 
+ 
+ - hosts: all
+   connection: local
+   user: root
+   gather_facts: true
+   tasks:
+   - debug: msg="group_names={{group_names}}"
+     run_once: true
+
+ - hosts: all
+   connection: local
+   user: root
+   gather_facts: true
+   tasks:
+   - debug: msg="ansible_play_batch={{ansible_play_batch}}"
+     run_once: true
+
+ # - hosts: ansible_play_batch[1]
+ #   gather_facts: true
+ #   become: yes
+ #   pre_tasks:
+ #    - include_vars: ~/ansible-AWS/roles/provision-webservers/tasks/webserver-vars/webservers.yml
+ #   roles:
+ #   - nginx
+
+ # - hosts: ansible_play_batch[2]
+ #   gather_facts: true
+ #   become: yes
+ #   pre_tasks:
+ #    - include_vars: ~/ansible-AWS/roles/provision-webservers/tasks/webserver-vars/webservers.yml
+ #   roles:
+ #   - nginx
