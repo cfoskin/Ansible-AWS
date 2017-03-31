@@ -17,22 +17,6 @@
    roles:
    - provision-loadbalancer
 
- - hosts: all
-   connection: local
-   user: root
-   gather_facts: true
-   tasks:
-   - debug: msg="groups={{groups}}"
-     run_once: true
-
- - hosts: all
-   connection: local
-   user: root
-   gather_facts: true
-   tasks:
-   - debug: msg="ansible_play_batch={{ansible_play_batch}}"
-     run_once: true
-
  - hosts: webservers
    gather_facts: true
    become: yes
