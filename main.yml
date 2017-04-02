@@ -4,24 +4,24 @@
    gather_facts: true
    user: root
    pre_tasks:
-    - include_vars: ~/ansible-AWS/roles/provision-webservers/tasks/webserver-vars/webservers.yml
+    - include_vars: ~/ansible-AWS/roles/provision-ec2/tasks/ec2-vars/webservers.yml
    roles:
-   - provision-webservers
+   - provision-ec2
 
  - hosts: localhost
    connection: local
    gather_facts: true
    user: root
    pre_tasks:
-    - include_vars: ~/ansible-AWS/roles/provision-loadbalancer/tasks/loadbalancer-vars/loadbalancer.yml
+    - include_vars: ~/ansible-AWS/roles/provision-ec2/tasks/ec2-vars/loadbalancer.yml
    roles:
-   - provision-loadbalancer
+   - provision-ec2
  
  - hosts: webservers
    gather_facts: true
    become: yes
    pre_tasks:
-    - include_vars: ~/ansible-AWS/roles/provision-webservers/tasks/webserver-vars/webservers.yml
+    - include_vars: ~/ansible-AWS/roles/provision-ec2/tasks/ec2-vars/webservers.yml
    roles:
    - nginx
 
@@ -29,6 +29,6 @@
    gather_facts: true
    become: yes
    pre_tasks:
-    - include_vars: ~/ansible-AWS/roles/provision-loadbalancer/tasks/loadbalancer-vars/loadbalancer.yml
+    - include_vars: ~/ansible-AWS/roles/provision-ec2/tasks/ec2-vars/loadbalancer.yml
    roles:
    - haproxy
