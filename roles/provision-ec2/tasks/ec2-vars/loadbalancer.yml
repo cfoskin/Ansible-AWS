@@ -8,7 +8,7 @@ ec2_tag_Name: "haproxy"
 ec2_tag_Type: "loadbalancer"
 ec2_tag_Environment: "production"
 ec2_volume_size: 8
-number_loadbalancer: 1
+count: 1
 haproxy_app_name: myapp
 haproxy_mode: http
 haproxy_enable_stats: enable 
